@@ -82,7 +82,7 @@ Exports all **visible top-level groups (Layer Sets)** from the active Photoshop 
 [![Download](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-%D0%97%D0%B0%D0%B6%D0%BC%D0%B8%20%3COption%3E%2F%3CAlt%3E%2C%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C%21-blue.svg?style=social&logo=GitHub)](https://raw.githubusercontent.com/sermelipharo/Lex-PS-Scripts/refs/heads/main/Scripts/Save%20Top%20Level%20Groups%20to%20Files….jsx)
 
 ### Описание
-Скрипт экспортирует все **видимые группы верхнего уровня (Layer Sets)** из активного документа Photoshop в отдельные файлы.
+Скрипт экспортирует все **видимые группы верхнего уровня** из активного документа Photoshop в отдельные файлы.
 
 ### Возможности
 - Выбор формата экспорта:
@@ -93,9 +93,8 @@ Exports all **visible top-level groups (Layer Sets)** from the active Photoshop 
   2. Создать подпапку с именем документа
   3. Создать подпапку в выбранном месте
 - Обработка групп с одинаковыми именами: нумерация сверху вниз или снизу вверх.
-- Дополнительная опция **Trim прозрачных границ** (можно отключить).
+- Дополнительная опция **обрезка пустого пространства** (можно отключить).
 - Запоминает выбранные настройки между запусками.
-- Показывает индикатор прогресса, если обработка занимает больше 3 секунд.
 
 ### Формат именования файлов
 ```
