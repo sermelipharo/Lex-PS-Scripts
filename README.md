@@ -79,7 +79,7 @@ Exports all **visible top-level groups (Layer Sets)** from the active Photoshop 
 
 **Файл:** </br>
 [`/Scripts/Save Top Level Groups to Files….jsx`](./Scripts/Save%20Top%20Level%20Groups%20to%20Files….jsx) </br>
-[![Download](https://img.shields.io/badge/Скачать-Зажми%20%3COption%2FAlt%3E%20чтобы%сохранить!-blue.svg?style=social&logo=GitHub)](https://raw.githubusercontent.com/sermelipharo/Lex-PS-Scripts/refs/heads/main/Scripts/Save%20Top%20Level%20Groups%20to%20Files….jsx)
+[![Download](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-%D0%97%D0%B0%D0%B6%D0%BC%D0%B8%20%3COption%3E%2F%3CAlt%3E%2C%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C%21-blue.svg?style=social&logo=GitHub)](https://raw.githubusercontent.com/sermelipharo/Lex-PS-Scripts/refs/heads/main/Scripts/Save%20Top%20Level%20Groups%20to%20Files….jsx)
 
 ### Описание
 Скрипт экспортирует все **видимые группы верхнего уровня (Layer Sets)** из активного документа Photoshop в отдельные файлы.
