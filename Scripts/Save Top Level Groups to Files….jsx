@@ -440,4 +440,5 @@ app.bringToFront();
         d.putBoolean(sid('trimEnabled'), !!p.trimEnabled);
         app.putCustomOptions(PREFS_ID, d, true);
     }catch(e){} }
+
 })();
