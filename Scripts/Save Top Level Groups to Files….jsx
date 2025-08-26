@@ -289,27 +289,65 @@ app.bringToFront();
         }
     }
 
-    function resolveOutputFolder(mode, externalBase, doc, base) {
-        try {
-            var workFolder = doc.path;
-            if (mode === 1) return workFolder;
-            if (mode === 2) {
-                var f2 = new Folder(workFolder.fsName + '/' + safeName(base));
-                if (!f2.exists) f2.create();
-                return f2;
+    // helper: try to get working folder without forcing Save
+function getWorkingFolder(doc) {
+    // 1) normal saved/opened docs
+    try { if (doc.path && Folder(doc.path).exists) return doc.path; } catch (e) {}
+    // 2) some builds expose fullName for opened files
+    try {
+        var f = File(doc.fullName);
+        if (f && f.exists) return f.parent;
+    } catch (e2) {}
+    // 3) no path available (e.g., Untitled) -> null
+    return null;
+}
+
+function resolveOutputFolder(mode, externalBase, doc, base) {
+    try {
+        var workFolder = getWorkingFolder(doc);
+
+        if (mode === 1) {
+            // same folder as working file; if unknown, ask once
+            if (!workFolder) {
+                var picked1 = Folder.selectDialog('Working file folder is unknown. Choose a base folder:');
+                if (!picked1) return null;
+                return picked1; // no subfolder
             }
-            var baseF = externalBase;
-            if (!baseF) {
-                var txt = prefs.externalPath || '';
-                if (!txt) baseF = Folder.selectDialog('Choose a base folder');
-                else baseF = new Folder(txt);
-                if (!baseF) return null;
+            return workFolder;
+        }
+
+        if (mode === 2) {
+            var parent = workFolder;
+            if (!parent) {
+                var picked2 = Folder.selectDialog('Working file folder is unknown. Choose a base folder:');
+                if (!picked2) return null;
+                parent = picked2;
             }
-            var f3 = new Folder(baseF.fsName + '/' + safeName(base));
-            if (!f3.exists) f3.create();
-            return f3;
-        } catch (e) { alert('Cannot resolve output folder: ' + e); return null; }
+            var f2 = new Folder(parent.fsName + '/' + safeName(base));
+            if (!f2.exists) f2.create();
+            return f2;
+        }
+
+        // mode === 3
+        var baseF = externalBase;
+        if (!baseF) {
+            var txt = (typeof prefs !== 'undefined' && prefs.externalPath) ? prefs.externalPath : '';
+            baseF = txt ? new Folder(txt) : null;
+            if (!baseF || !baseF.exists) {
+                var picked3 = Folder.selectDialog('Choose a base folder');
+                if (!picked3) return null;
+                baseF = picked3;
+            }
+        }
+        var f3 = new Folder(baseF.fsName + '/' + safeName(base));
+        if (!f3.exists) f3.create();
+        return f3;
+
+    } catch (e) {
+        alert('Cannot resolve output folder: ' + e);
+        return null;
     }
+}
 
     function makeEmptyCloneDoc(src, newName) {
         var w = src.width, h = src.height, res = src.resolution;
@@ -440,5 +478,4 @@ app.bringToFront();
         d.putBoolean(sid('trimEnabled'), !!p.trimEnabled);
         app.putCustomOptions(PREFS_ID, d, true);
     }catch(e){} }
-
 })();
